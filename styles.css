@@ -16,18 +16,23 @@ body {
 
 /* Encabezado Institucional */
 header {
-    background-color: #6c1d45; /* Guinda IPN aproximado */
-    color: white;
+    background-color: #f4f6f9; /* Color de fondo general de la página */
     text-align: center;
-    padding: 20px;
+    padding: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logos-container {
+    background-color: white; /* FONDO BLANCO PURO AQUÍ */
+    padding: 20px 0; /* Añade espacio arriba y abajo de los logos */
+    border-bottom: 2px solid #ccc; /* Una línea divisoria opcional */
+    margin-bottom: 20px; /* Espacio antes de los títulos */
+/*    
     display: flex;
     justify-content: center;
     gap: 30px;
     margin-bottom: 15px;
+*/    
 }
 
 .logo {
@@ -38,6 +43,19 @@ header {
 
 header h1 {
     font-size: 1.8rem;
+    color: #6c1d45; /* Asegúrate de que el título tenga el color guinda */
+    margin-bottom: 5px;
+}
+
+header h2 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #333; /* Color oscuro para el grupo */
+    opacity: 0.9;
+}
+/*
+header h1 {
+    font-size: 1.8rem;
     margin-bottom: 5px;
 }
 
@@ -46,7 +64,7 @@ header h2 {
     font-weight: 300;
     opacity: 0.9;
 }
-
+*/
 /* Contenedor Principal */
 .contenedor {
     flex: 1;

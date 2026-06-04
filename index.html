@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orientación Juvenil y Profesional II - Grupo 2IV21</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header id="header-inicio">
+        <div class="logos-container">
+            <img src="logo-ipn.png" alt="Logo IPN" class="logo">
+            <img src="logo-cecyt2.png" alt="Logo CECyT 2" class="logo">
+        </div>
+        <h1>Orientación Juvenil y Profesional II</h1>
+        <h2>Grupo: 2IV21</h2>
+    </header>
+
+    <main class="contenedor">
+        <section id="menu-temas" class="grid-temas">
+            
+            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo1.pdf', 'Tema 1: Autoestima y Bienestar')">
+                <h3>Equipo 1</h3>
+                <p>Autoestima y Bienestar</p>
+            </div>
+
+            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo2.pdf', 'Tema 2: Proyecto de Vida')">
+                <h3>Equipo 2</h3>
+                <p>Proyecto de Vida</p>
+            </div>
+
+            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo3.pdf', 'Tema 3: Adicciones y Prevención')">
+                <h3>Equipo 3</h3>
+                <p>Adicciones y Prevención</p>
+            </div>
+
+            </section>
+
+        <section id="visor-pdf" class="oculto">
+            <div class="barra-herramientas">
+                <button class="btn-regresar" onclick="regresarAlMenu()">← Regresar al Menú</button>
+                <h3 id="titulo-pdf-actual">Tema</h3>
+            </div>
+            <div class="contenedor-iframe">
+                <iframe id="iframe-pdf" src="" type="application/pdf"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 - CECyT 2 "Miguel Bernard" - IPN</p>
+    </footer>
+
+    <script>
+        function verPdf(rutaPdf, tituloTema) {
+            // Asignar la ruta del PDF al iframe y el título
+            document.getElementById('iframe-pdf').src = rutaPdf;
+            document.getElementById('titulo-pdf-actual').innerText = tituloTema;
+
+            // Ocultar el menú de temas y mostrar el visor
+            document.getElementById('menu-temas').classList.add('oculto');
+            document.getElementById('visor-pdf').classList.remove('oculto');
+            
+            // Desplazar la pantalla hacia arriba automáticamente
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function regresarAlMenu() {
+            // Ocultar el visor y mostrar el menú de temas
+            document.getElementById('menu-temas').classList.remove('oculto');
+            document.getElementById('visor-pdf').classList.add('oculto');
+            
+            // Limpiar el iframe para detener la carga del PDF de fondo
+            document.getElementById('iframe-pdf').src = "";
+        }
+    </script>
+</body>
+</html>

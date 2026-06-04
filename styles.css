@@ -20,43 +20,45 @@ body {
    2. ENCABEZADO (HEADER) Y LOGOS INSTITUCIONALES
    ========================================================================== */
 header {
-    background-color: #f4f6f9; /* Mismo fondo de la página para que resalte la franja */
+    background-color: #6c1d45; /* Fondo GUINDA institucional para los títulos */
     text-align: center;
-    padding: 0 0 25px 0; /* Sin padding arriba para pegar la franja de logos */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 0 0 30px 0; /* Espacio inferior debajo del grupo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Franja blanca exclusiva para los logos */
+/* Franja BLANCA exclusiva para los logos */
 .logos-container {
-    background-color: #ffffff; /* Fondo blanco puro */
-    padding: 15px 40px;        /* Espacio interno y separación de las orillas */
+    background-color: #ffffff; /* Fondo blanco puro únicamente para los logos */
+    padding: 10px 40px;        /* Espacio interno y separación de las orillas */
     display: flex;
     justify-content: space-between; /* IPN a la izquierda, CECyT 2 a la derecha */
-    align-items: center;       /* Centrado vertical de los logos */
-    border-bottom: 2px solid #eaeaea; /* Línea sutil de división */
+    align-items: center;       /* Centrado vertical perfecto */
+    border-bottom: 2px solid #eaeaea; 
     width: 100%;
+    margin-bottom: 25px;       /* Separa los logos del inicio del bloque guinda */
 }
 
-/* Tamaño de los logos */
+/* Tamaño idéntico y controlado para ambos logos */
 .logo {
-    height: 75px;
-    width: auto;
+    height: 70px;              /* Altura idéntica para ambos */
+    max-height: 70px;          /* Fuerza el límite máximo de altura */
+    width: auto;               /* Ajusta el ancho automáticamente para que no se deformen */
+    display: block;
     object-fit: contain;
 }
 
-/* Títulos institucionales */
+/* Títulos dentro del bloque guinda */
 header h1 {
     font-size: 2rem;
-    color: #6c1d45; /* Guinda institucional IPN */
-    margin-top: 25px; /* Espacio respecto a la franja de logos */
-    margin-bottom: 5px;
+    color: #ffffff;            /* Texto BLANCO para resaltar sobre el guinda */
+    margin-bottom: 8px;
     font-weight: 700;
 }
 
 header h2 {
     font-size: 1.3rem;
     font-weight: 400;
-    color: #555555; /* Gris oscuro para el grupo */
+    color: #ffebf2;            /* Tono claro/rosado sutil para el grupo sobre el guinda */
 }
 
 /* ==========================================================================
@@ -130,7 +132,7 @@ header h2 {
 }
 
 .btn-regresar:hover {
-    background-color: #6c1d45; /* Cambia a guinda al pasar el cursor */
+    background-color: #6c1d45; 
 }
 
 #titulo-pdf-actual {
@@ -142,7 +144,7 @@ header h2 {
 /* Marco contenedor interactivo del PDF */
 .contenedor-iframe {
     width: 100%;
-    height: 78vh; /* Ocupa el 78% del alto de la pantalla */
+    height: 78vh; 
     background: #ffffff;
     border-radius: 8px;
     overflow: hidden;
@@ -158,7 +160,6 @@ iframe, object {
 /* ==========================================================================
    5. COMPONENTES DE UTILIDAD Y PIE DE PÁGINA
    ========================================================================== */
-/* Clase para ocultar pantallas con JavaScript */
 .oculto {
     display: none !important;
 }

@@ -54,15 +54,17 @@
 
     <script>
         function verPdf(rutaPdf, tituloTema) {
-            // Asignar la ruta del PDF al iframe y el título
-            document.getElementById('iframe-pdf').src = rutaPdf;
+            // Obtenemos la URL absoluta para que el visor de Google la pueda leer correctamente
+            const urlAbsoluta = window.location.origin + window.location.pathname.replace('index.html', '') + rutaPdf;
+    
+            // Pasamos la URL al visor de Google Docs
+            document.getElementById('iframe-pdf').src = 'https://docs.google.com/gview?url=' + encodeURIComponent(urlAbsoluta) + '&embedded=true';
+    
             document.getElementById('titulo-pdf-actual').innerText = tituloTema;
 
-            // Ocultar el menú de temas y mostrar el visor
+            // Mostrar visor y ocultar menú
             document.getElementById('menu-temas').classList.add('oculto');
             document.getElementById('visor-pdf').classList.remove('oculto');
-            
-            // Desplazar la pantalla hacia arriba automáticamente
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 

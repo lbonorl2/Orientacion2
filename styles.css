@@ -1,4 +1,6 @@
-/* Estilos Generales */
+/* ==========================================================================
+   1. ESTILOS GENERALES Y CONFIGURACIÓN
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -14,58 +16,52 @@ body {
     min-height: 100vh;
 }
 
-/* Encabezado Institucional */
+/* ==========================================================================
+   2. ENCABEZADO (HEADER) Y LOGOS INSTITUCIONALES
+   ========================================================================== */
 header {
-    background-color: #f4f6f9; /* Color de fondo general de la página */
+    background-color: #f4f6f9; /* Mismo fondo de la página para que resalte la franja */
     text-align: center;
-    padding: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0 0 25px 0; /* Sin padding arriba para pegar la franja de logos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+/* Franja blanca exclusiva para los logos */
 .logos-container {
-    background-color: white; /* FONDO BLANCO PURO AQUÍ */
-    padding: 20px 0; /* Añade espacio arriba y abajo de los logos */
-    border-bottom: 2px solid #ccc; /* Una línea divisoria opcional */
-    margin-bottom: 20px; /* Espacio antes de los títulos */
-/*    
+    background-color: #ffffff; /* Fondo blanco puro */
+    padding: 15px 40px;        /* Espacio interno y separación de las orillas */
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 15px;
-*/    
+    justify-content: space-between; /* IPN a la izquierda, CECyT 2 a la derecha */
+    align-items: center;       /* Centrado vertical de los logos */
+    border-bottom: 2px solid #eaeaea; /* Línea sutil de división */
+    width: 100%;
 }
 
+/* Tamaño de los logos */
 .logo {
-    height: 70px;
+    height: 75px;
     width: auto;
     object-fit: contain;
 }
 
+/* Títulos institucionales */
 header h1 {
-    font-size: 1.8rem;
-    color: #6c1d45; /* Asegúrate de que el título tenga el color guinda */
+    font-size: 2rem;
+    color: #6c1d45; /* Guinda institucional IPN */
+    margin-top: 25px; /* Espacio respecto a la franja de logos */
     margin-bottom: 5px;
+    font-weight: 700;
 }
 
 header h2 {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: #333; /* Color oscuro para el grupo */
-    opacity: 0.9;
-}
-/*
-header h1 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #555555; /* Gris oscuro para el grupo */
 }
 
-header h2 {
-    font-size: 1.2rem;
-    font-weight: 300;
-    opacity: 0.9;
-}
-*/
-/* Contenedor Principal */
+/* ==========================================================================
+   3. CONTENEDOR PRINCIPAL Y DISEÑO DE BLOQUES (GRID)
+   ========================================================================== */
 .contenedor {
     flex: 1;
     max-width: 1200px;
@@ -74,26 +70,28 @@ header h2 {
     padding: 0 20px;
 }
 
-/* Grid de Bloques de Temas */
+/* Cuadrícula de los temas de los equipos */
 .grid-temas {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
+/* Bloques individuales de cada equipo */
 .tarjeta-tema {
-    background-color: white;
-    border-left: 5px solid #6c1d45;
+    background-color: #ffffff;
+    border-left: 6px solid #6c1d45; /* Detalle guinda al lado izquierdo */
     border-radius: 8px;
     padding: 25px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Efecto visual al pasar el cursor sobre un bloque */
 .tarjeta-tema:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .tarjeta-tema h3 {
@@ -103,49 +101,64 @@ header h2 {
 }
 
 .tarjeta-tema p {
-    color: #555;
+    color: #666666;
     font-size: 1rem;
+    line-height: 1.4;
 }
 
-/* Visor de PDF */
+/* ==========================================================================
+   4. VISOR DINÁMICO DE PDF
+   ========================================================================== */
 .barra-herramientas {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
+/* Botón Regresar */
 .btn-regresar {
-    background-color: #333;
-    color: white;
+    background-color: #333333;
+    color: #ffffff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 20px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: background 0.2s;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
 }
 
 .btn-regresar:hover {
-    background-color: #6c1d45;
+    background-color: #6c1d45; /* Cambia a guinda al pasar el cursor */
 }
 
+#titulo-pdf-actual {
+    font-size: 1.4rem;
+    color: #333333;
+    font-weight: 600;
+}
+
+/* Marco contenedor interactivo del PDF */
 .contenedor-iframe {
     width: 100%;
-    height: 75vh;
-    background: white;
+    height: 78vh; /* Ocupa el 78% del alto de la pantalla */
+    background: #ffffff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-iframe {
+iframe, object {
     width: 100%;
     height: 100%;
     border: none;
 }
 
-/* Clases de utilidad */
+/* ==========================================================================
+   5. COMPONENTES DE UTILIDAD Y PIE DE PÁGINA
+   ========================================================================== */
+/* Clase para ocultar pantallas con JavaScript */
 .oculto {
     display: none !important;
 }
@@ -153,9 +166,9 @@ iframe {
 /* Pie de página */
 footer {
     text-align: center;
-    padding: 15px;
-    background-color: #222;
-    color: #aaa;
-    font-size: 0.85rem;
+    padding: 20px;
+    background-color: #1e1e1e;
+    color: #bbbbbb;
+    font-size: 0.9rem;
     margin-top: auto;
 }

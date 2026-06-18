@@ -20,61 +20,69 @@
     <main class="contenedor">
         <section id="menu-temas" class="grid-temas">
             
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo1.pdf', 'GEOMETRÍA Y TRIGONOMETRÍA')">
+            <div class="tarjeta-tema" onclick="verContenido('pdfs/geometria.pdf', 'Geometría y Trigonometría', 'imagenes/geometria.jpg', 'pdf')">
                 <h3>GEOMETRÍA Y TRIGONOMETRÍA</h3>
                 <p>Equipo 1</p>
             </div>
-            
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo2.pdf', 'FILOSOFÍA II: Equipo 2')">
+
+            <div class="tarjeta-tema" onclick="verContenido('pdfs/filosofia.pdf', 'Filosofía II', 'imagenes/filosofia.jpg', 'pdf')">
                 <h3>FILOSOFÍA II</h3>
                 <p>Equipo 2</p>
             </div>
 
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo3.pdf', 'COMPUTACIÓN BÁSICA II: Equipo 3')">
+            <div class="tarjeta-tema" onclick="verContenido('computacion/INDICE.HTML', 'Computación Básica II', 'imagenes/computacion.jpg', 'web')">
                 <h3>COMPUTACIÓN BÁSICA II</h3>
                 <p>Equipo 3</p>
             </div>
 
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo4.pdf', 'INGLÉS II: Equipo 4')">
+            <div class="tarjeta-tema" onclick="verContenido('videos/ingles.mp4', 'Inglés II - Video Exposición', 'imagenes/ingles.jpg', 'video')">
                 <h3>INGLÉS II</h3>
                 <p>Equipo 4</p>
             </div>
 
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo5.pdf', 'EXPRESIÓN ORAL Y ESCRITA II: Equipo 5')">
+            <div class="tarjeta-tema" onclick="verContenido('pdfs/expresion.pdf', 'Expresión Oral y Escrita II', 'imagenes/expresion.jpg', 'pdf')">
                 <h3>EXPRESIÓN ORAL Y ESCRITA II</h3>
                 <p>Equipo 5</p>
             </div>
 
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo6.pdf', 'BIOLOGÍA BÁSICA: Equipo 6')">
+            <div class="tarjeta-tema" onclick="verContenido('pdfs/biologia.pdf', 'Biología Básica', 'imagenes/biologia.jpg', 'pdf')">
                 <h3>BIOLOGÍA BÁSICA</h3>
                 <p>Equipo 6</p>
             </div>
 
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo7.pdf', 'HISTORIA DE MÉXICO CONTEMPORÁNEO II: Equipo 7')">
+            <div class="tarjeta-tema" onclick="verContenido('pdfs/historia.pdf', 'Historia de México Contemporáneo II', 'imagenes/historia.jpg', 'pdf')">
                 <h3>HISTORIA DE MÉXICO CONTEMPORÁNEO II</h3>
                 <p>Equipo 7</p>
             </div>
 
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo8.pdf', 'ORIENTACIÓN JUVENIL Y PROFESIONAL II: Equipo 8')">
+            <div class="tarjeta-tema" onclick="verContenido('pdfs/orientacion.pdf', 'Orientación Juvenil y Profesional II', 'imagenes/orientacion.jpg', 'pdf')">
                 <h3>ORIENTACIÓN JUVENIL Y PROFESIONAL II</h3>
                 <p>Equipo 8</p>
             </div>
 
-            <div class="tarjeta-tema" onclick="verPdf('pdfs/equipo9.pdf', 'COMUNICACIÓN Y LIDERAZGO: Equipo 9')">
+            <div class="tarjeta-tema" onclick="verContenido('pdfs/comunicacion.pdf', 'Comunicación y Liderazgo', 'imagenes/comunicacion.jpg', 'pdf')">
                 <h3>COMUNICACIÓN Y LIDERAZGO</h3>
                 <p>Equipo 9</p>
             </div>
-            </section>
+
+        </section>
 
         <section id="visor-pdf" class="oculto">
             <div class="barra-herramientas">
-                <button class="btn-regresar" onclick="regresarAlMenu()">← Regresar al Menú</button>
+                <button class="btn-regresar" onclick="regresarAlMenu()">← Volver a Proyecto Aula</button>
+                <button id="btn-inicio-materia" class="btn-inicio-materia oculto" onclick="reiniciarMateria()">🏠 Inicio de esta Materia</button>
                 <h3 id="titulo-pdf-actual">Tema</h3>
             </div>
-            <div class="contenedor-iframe">
-                <iframe id="iframe-pdf" src="" type="application/pdf"></iframe>
+
+            <div class="contenedor-foto-equipo">
+                <img id="foto-equipo-actual" src="" alt="Foto del Equipo">
             </div>
-            
+
+            <div class="contenedor-iframe">
+                <iframe id="iframe-general" src="" type="text/html" class="oculto"></iframe>
+                
+                <video id="reproductor-video" controls class="oculto" style="width: 100%; height: 100%; background: #000000;"></video>
+            </div>
         </section>
     </main>
 
@@ -83,28 +91,67 @@
     </footer>
 
     <script>
-        function verPdf(rutaPdf, tituloTema) {
-            // Obtenemos la URL absoluta para que el visor de Google la pueda leer correctamente
-            const urlAbsoluta = window.location.origin + window.location.pathname.replace('index.html', '') + rutaPdf;
-    
-            // Pasamos la URL al visor de Google Docs
-            document.getElementById('iframe-pdf').src = 'https://docs.google.com/gview?url=' + encodeURIComponent(urlAbsoluta) + '&embedded=true';
-    
+        let urlRaizMateria = ""; // Guarda la URL inicial de la materia interactiva activa
+
+        function verContenido(rutaOrigen, tituloTema, rutaFoto, tipoContenido) {
+            urlRaizMateria = rutaOrigen;
+
+            // Cargar la foto del equipo y configurar título de la sección
+            const imgEquipo = document.getElementById('foto-equipo-actual');
+            imgEquipo.src = rutaFoto;
             document.getElementById('titulo-pdf-actual').innerText = tituloTema;
 
-            // Mostrar visor y ocultar menú
+            const iframe = document.getElementById('iframe-general');
+            const video = document.getElementById('reproductor-video');
+            const btnInicioMateria = document.getElementById('btn-inicio-materia');
+            
+            // Resetear visibilidad interna del visor
+            iframe.classList.add('oculto');
+            video.classList.add('oculto');
+            btnInicioMateria.classList.add('oculto');
+
+            // Determinar renderizado según el tipo de archivo asignado
+            if (tipoContenido === 'pdf') {
+                const urlAbsoluta = window.location.origin + window.location.pathname.replace('index.html', '') + rutaOrigen;
+                iframe.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(urlAbsoluta) + '&embedded=true';
+                iframe.classList.remove('oculto');
+            } 
+            else if (tipoContenido === 'web') {
+                iframe.src = rutaOrigen;
+                iframe.classList.remove('oculto');
+                btnInicioMateria.classList.remove('oculto'); // Muestra la casita de navegación interna
+            } 
+            else if (tipoContenido === 'video') {
+                video.src = rutaOrigen;
+                video.classList.remove('oculto');
+            }
+
+            // Transición de pantallas
             document.getElementById('menu-temas').classList.add('oculto');
             document.getElementById('visor-pdf').classList.remove('oculto');
+            
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
+        function reiniciarMateria() {
+            if (urlRaizMateria) {
+                document.getElementById('iframe-general').src = urlRaizMateria;
+            }
+        }
+
         function regresarAlMenu() {
-            // Ocultar el visor y mostrar el menú de temas
             document.getElementById('menu-temas').classList.remove('oculto');
             document.getElementById('visor-pdf').classList.add('oculto');
             
-            // Limpiar el iframe para detener la carga del PDF de fondo
-            document.getElementById('iframe-pdf').src = "";
+            const iframe = document.getElementById('iframe-general');
+            const video = document.getElementById('reproductor-video');
+            
+            // Vaciar elementos para congelar descargas o reproducciones en segundo plano
+            iframe.src = "";
+            video.pause();
+            video.src = "";
+            document.getElementById('foto-equipo-actual').src = "";
+            urlRaizMateria = "";
         }
     </script>
 </body>

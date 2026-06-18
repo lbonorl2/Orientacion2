@@ -10,47 +10,45 @@
 
 body {
     background-color: #f4f6f9;
-    color: #333;
+    color: #333333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
 /* ==========================================================================
-   2. ENCABEZADO (HEADER) Y LOGOS INSTITUCIONALES
+   2. ENCABEZADO (HEADER) INSTITUCIONAL
    ========================================================================== */
 header {
-    background-color: #6c1d45; /* Fondo GUINDA institucional para los títulos */
+    background-color: #6c1d45; /* Guinda IPN */
     text-align: center;
-    padding: 0 0 30px 0; /* Espacio inferior debajo del grupo */
+    padding: 0 0 30px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Franja BLANCA exclusiva para los logos */
+/* Franja blanca superior exclusiva para los dos logos */
 .logos-container {
-    background-color: #ffffff; /* Fondo blanco puro únicamente para los logos */
-    padding: 10px 40px;        /* Espacio interno y separación de las orillas */
+    background-color: #ffffff;
+    padding: 10px 40px;
     display: flex;
     justify-content: space-between; /* IPN a la izquierda, CECyT 2 a la derecha */
-    align-items: center;       /* Centrado vertical perfecto */
-    border-bottom: 2px solid #eaeaea; 
+    align-items: center;
+    border-bottom: 2px solid #eaeaea;
     width: 100%;
-    margin-bottom: 25px;       /* Separa los logos del inicio del bloque guinda */
+    margin-bottom: 25px;
 }
 
-/* Tamaño idéntico y controlado para ambos logos */
 .logo {
-    height: 70px;              /* Altura idéntica para ambos */
-    max-height: 70px;          /* Fuerza el límite máximo de altura */
-    width: auto;               /* Ajusta el ancho automáticamente para que no se deformen */
+    height: 70px;
+    max-height: 70px;
+    width: auto;
     display: block;
     object-fit: contain;
 }
 
-/* Títulos dentro del bloque guinda */
 header h1 {
     font-size: 2rem;
-    color: #ffffff;            /* Texto BLANCO para resaltar sobre el guinda */
+    color: #ffffff;
     margin-bottom: 8px;
     font-weight: 700;
 }
@@ -58,11 +56,11 @@ header h1 {
 header h2 {
     font-size: 1.3rem;
     font-weight: 400;
-    color: #ffebf2;            /* Tono claro/rosado sutil para el grupo sobre el guinda */
+    color: #ffebf2;
 }
 
 /* ==========================================================================
-   3. CONTENEDOR PRINCIPAL Y DISEÑO DE BLOQUES (GRID)
+   3. CONTENEDOR PRINCIPAL Y MATRIZ DE BLOQUES (GRID)
    ========================================================================== */
 .contenedor {
     flex: 1;
@@ -72,17 +70,15 @@ header h2 {
     padding: 0 20px;
 }
 
-/* Cuadrícula de los temas de los equipos */
 .grid-temas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
 }
 
-/* Bloques individuales de cada equipo */
 .tarjeta-tema {
     background-color: #ffffff;
-    border-left: 6px solid #6c1d45; /* Detalle guinda al lado izquierdo */
+    border-left: 6px solid #6c1d45;
     border-radius: 8px;
     padding: 25px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
@@ -90,7 +86,6 @@ header h2 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Efecto visual al pasar el cursor sobre un bloque */
 .tarjeta-tema:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
@@ -99,26 +94,25 @@ header h2 {
 .tarjeta-tema h3 {
     color: #6c1d45;
     margin-bottom: 8px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 .tarjeta-tema p {
     color: #666666;
-    font-size: 1rem;
-    line-height: 1.4;
+    font-size: 0.95rem;
 }
 
 /* ==========================================================================
-   4. VISOR DINÁMICO DE PDF
+   4. BARRA DE HERRAMIENTAS Y VISOR DE MEDIOS
    ========================================================================== */
 .barra-herramientas {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 20px;
 }
 
-/* Botón Regresar */
 .btn-regresar {
     background-color: #333333;
     color: #ffffff;
@@ -132,39 +126,73 @@ header h2 {
 }
 
 .btn-regresar:hover {
-    background-color: #6c1d45; 
+    background-color: #6c1d45;
+}
+
+.btn-inicio-materia {
+    background-color: #006699;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.btn-inicio-materia:hover {
+    background-color: #004466;
 }
 
 #titulo-pdf-actual {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #333333;
     font-weight: 600;
 }
 
-/* Marco contenedor interactivo del PDF */
 .contenedor-iframe {
     width: 100%;
-    height: 78vh; 
+    height: 78vh;
     background: #ffffff;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-iframe, object {
+iframe {
     width: 100%;
     height: 100%;
     border: none;
 }
 
 /* ==========================================================================
-   5. COMPONENTES DE UTILIDAD Y PIE DE PÁGINA
+   5. COMPONENTE FOTO DEL EQUIPO (RESPONSIVO)
+   ========================================================================== */
+.contenedor-foto-equipo {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto 25px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+}
+
+#foto-equipo-actual {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   6. COMPONENTES GLOBALES Y ADAPTACIONES MÓVILES
    ========================================================================== */
 .oculto {
     display: none !important;
 }
 
-/* Pie de página */
 footer {
     text-align: center;
     padding: 20px;
@@ -173,3 +201,25 @@ footer {
     font-size: 0.9rem;
     margin-top: auto;
 }
+
+/* Adaptación móvil para pantallas de celulares */
+@media (max-width: 600px) {
+    .logos-container {
+        padding: 10px 15px;
+    }
+    .logo {
+        height: 50px; /* Reducir logos un poco en celulares */
+    }
+    .barra-herramientas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    #titulo-pdf-actual {
+        text-align: center;
+        margin-top: 5px;
+    }
+    .contenedor-foto-equipo {
+        max-width: 100%;
+    }
+                                }
